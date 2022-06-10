@@ -134,6 +134,8 @@ func (core *Core) parser(key string, value string) (*postgresql.Flow, error) {
 
 	flow.Metadata = value
 
+	core.Log.Info(fmt.Sprintf("%s: %s", flow.Verdict, flow.SourcePodName))
+
 	return &flow, nil
 }
 func (core *Core) store(flow *postgresql.Flow) error {
@@ -162,6 +164,7 @@ func (core *Core) store(flow *postgresql.Flow) error {
 		flow.IpSource,
 		flow.IpDestination,
 		flow.L4Protocol,
+		//fmt.Sprintf("%d", flow.L4SourcePort),
 		fmt.Sprintf("%d", flow.L4DestinationPort),
 		flow.SourcePodName,
 		flow.SourceNamespace,

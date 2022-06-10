@@ -75,7 +75,7 @@ func NewConsumer(fnHandleData func(string, []byte, []byte) error, consumerInfor 
 	configConsumer := sarama.NewConfig()
 
 	configConsumer.Version = version
-	//configConsumer.Consumer.Group.Rebalance.Strategy = MyBalanceStrategy
+	configConsumer.Consumer.Group.Rebalance.Strategy = MyBalanceStrategy
 	configConsumer.Consumer.Offsets.Initial = sarama.OffsetOldest
 	configConsumer.Consumer.Return.Errors = true
 	configConsumer.Metadata.Full = true //default
